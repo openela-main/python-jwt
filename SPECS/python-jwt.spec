@@ -3,12 +3,13 @@
 
 Name:               python-jwt
 Version:            1.6.1
-Release:            2%{?dist}
+Release:            2%{?dist}.1
 Summary:            JSON Web Token implementation in Python
 License:            MIT
 URL:                https://github.com/jpadilla/pyjwt
 Source0:            %{url}/archive/%{version}/pyjwt-%{version}.tar.gz
 Patch0:             disable-coverage-and-runner.patch
+Patch1:             RHEL-271640-fix-CVE-2026-32597.patch
 BuildArch:          noarch
 
 BuildRequires:      python%{python3_pkgversion}-devel
@@ -53,6 +54,11 @@ py.test-%{python3_version} --verbose
 %{_bindir}/pyjwt
 
 %changelog
+* Wed Oct 28 2026 Oyvind Albrigtsen <oalbrigt@redhat.com> - 1.6.1-2.1
+- Fix CVE-2026-32597
+
+  Resolves: RHEL-271640
+
 * Wed May 16 2018 Oyvind Albrigtsen <oalbrigt@redhat.com> - 1.6.1-2
 - Drop python2 subpackage
 
